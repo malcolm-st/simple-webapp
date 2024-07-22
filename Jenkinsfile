@@ -20,6 +20,17 @@ pipeline {
 					--suppression suppression.xml''', odcInstallation: 'OWASP Dependency-Check Vulnerabilities'
 			}
         }
+        stage('SonarQube analysis') {
+            environment {
+                scannerHome = tool 'SonarQube'
+            }
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=OWASP2 -Dsonar.host.url=http://172.19.0.4:9000 -Dsonar.sources=. -Dsonar.java.binaries=target/classes"
+                }
+            }
+        }
+
     }   
     post {
         success {
