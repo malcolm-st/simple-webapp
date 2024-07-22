@@ -26,7 +26,7 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=OWASP2 -Dsonar.host.url=http://172.19.0.4:9000 -Dsonar.sources=. -Dsonar.java.binaries=target/classes"
+                    sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=OWASP2 -Dsonar.host.url=http://172.19.0.4:9000 -Dsonar.sources=. -Dsonar.java.binaries=target/classes -Dsonar.login=sqp_54241cf851a92b08e3e0e11b7059f9b52b753134"
                 }
             }
         }
